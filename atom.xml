@@ -3,11 +3,11 @@
   <title>Kayeung&#39;s 小作坊</title>
   
   
-  <link href="https://github.com/kayeung/atom.xml" rel="self"/>
+  <link href="https://kayeung.github.io/atom.xml" rel="self"/>
   
-  <link href="https://github.com/kayeung/"/>
+  <link href="https://kayeung.github.io/"/>
   <updated>2022-01-25T02:37:12.424Z</updated>
-  <id>https://github.com/kayeung/</id>
+  <id>https://kayeung.github.io/</id>
   
   <author>
     <name>Kayeung Au</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Spring概述</title>
-    <link href="https://github.com/kayeung/2022/01/25/1.Spring%E6%A6%82%E8%BF%B0/"/>
-    <id>https://github.com/kayeung/2022/01/25/1.Spring%E6%A6%82%E8%BF%B0/</id>
+    <link href="https://kayeung.github.io/2022/01/25/1.Spring%E6%A6%82%E8%BF%B0/"/>
+    <id>https://kayeung.github.io/2022/01/25/1.Spring%E6%A6%82%E8%BF%B0/</id>
     <published>2022-01-25T02:38:27.404Z</published>
     <updated>2022-01-25T02:37:12.424Z</updated>
     
@@ -38,8 +38,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="https://github.com/kayeung/2022/01/24/hello-world/"/>
-    <id>https://github.com/kayeung/2022/01/24/hello-world/</id>
+    <link href="https://kayeung.github.io/2022/01/24/hello-world/"/>
+    <id>https://kayeung.github.io/2022/01/24/hello-world/</id>
     <published>2022-01-24T12:19:46.812Z</published>
     <updated>2022-01-24T12:08:21.568Z</updated>
     
