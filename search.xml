@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Bootstrap学习笔记</title>
+      <link href="/2022/02/08/Bootstrap%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <url>/2022/02/08/Bootstrap%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h3 id="响应式工具"><a href="#响应式工具" class="headerlink" title="响应式工具"></a>响应式工具</h3><h3 id="栅格盒模型设计的精妙之处"><a href="#栅格盒模型设计的精妙之处" class="headerlink" title="栅格盒模型设计的精妙之处"></a>栅格盒模型设计的精妙之处</h3><p>​    容器上两边具有15px的padding</p><p>​    行两边具有-15px的margin</p><p>​    列两边具有15px的padding</p><p>​    为了维护槽宽的规则， 列两边必须得要15px的padding</p><p>​    为了能使列嵌套行，行两边必须要有-15px的margin</p><p>​    为了让容器可以包裹住行，容器两边必须要有15px的padding</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Less学习笔记</title>
       <link href="/2022/02/06/less%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
       <url>/2022/02/06/less%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
