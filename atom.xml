@@ -6,7 +6,7 @@
   <link href="https://kayeung.github.io/atom.xml" rel="self"/>
   
   <link href="https://kayeung.github.io/"/>
-  <updated>2022-02-08T13:58:58.452Z</updated>
+  <updated>2022-02-09T01:39:33.095Z</updated>
   <id>https://kayeung.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【备忘】CSS文字溢出省略号代替</title>
+    <link href="https://kayeung.github.io/2022/02/09/%E3%80%90%E5%A4%87%E5%BF%98%E3%80%91CSS%E6%96%87%E5%AD%97%E6%BA%A2%E5%87%BA%E7%9C%81%E7%95%A5%E5%8F%B7%E4%BB%A3%E6%9B%BF/"/>
+    <id>https://kayeung.github.io/2022/02/09/%E3%80%90%E5%A4%87%E5%BF%98%E3%80%91CSS%E6%96%87%E5%AD%97%E6%BA%A2%E5%87%BA%E7%9C%81%E7%95%A5%E5%8F%B7%E4%BB%A3%E6%9B%BF/</id>
+    <published>2022-02-09T01:37:42.641Z</published>
+    <updated>2022-02-09T01:39:33.095Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.peopleName</span> &#123;</span><br><span class="line">    <span class="comment">/* 文字溢出省略号代替 */</span></span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">    <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">    <span class="attribute">word-break</span>: break-all;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Bootstrap学习笔记</title>
