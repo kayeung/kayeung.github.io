@@ -6,7 +6,7 @@
   <link href="https://kayeung.github.io/atom.xml" rel="self"/>
   
   <link href="https://kayeung.github.io/"/>
-  <updated>2022-02-11T03:32:54.862Z</updated>
+  <updated>2022-02-12T15:58:42.729Z</updated>
   <id>https://kayeung.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jQuery-跳转到页面指定位置</title>
+    <link href="https://kayeung.github.io/2022/02/12/jQuery-%E8%B7%B3%E8%BD%AC%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE/"/>
+    <id>https://kayeung.github.io/2022/02/12/jQuery-%E8%B7%B3%E8%BD%AC%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE/</id>
+    <published>2022-02-12T15:45:19.433Z</published>
+    <updated>2022-02-12T15:58:42.729Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//jQuery</span></span><br><span class="line">$(<span class="string">&quot;#damu-nav &gt; li &gt; a&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;  <span class="comment">//点击到这里的a标签触发下面的方法</span></span><br><span class="line">    <span class="keyword">var</span> href = $(<span class="built_in">this</span>).attr(<span class="string">&quot;href&quot;</span>);  <span class="comment">//获取到a标签href属性的内容</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;#damu-list &gt; li &gt; a[href=&quot;</span>+(href)+<span class="string">&quot;]&quot;</span>);  <span class="comment">//输出：#chrome</span></span><br><span class="line">    $(<span class="string">&quot;#damu-list &gt; li &gt; a[href=&quot;</span>+(href)+<span class="string">&quot;]&quot;</span>).tab(<span class="string">&#x27;show&#x27;</span>);<span class="comment">//切换到对应标签页的具体页</span></span><br><span class="line">    $(<span class="built_in">document</span>).scrollTop($(<span class="string">&quot;#damu-tab&quot;</span>).offset().top)<span class="comment">//页面自动跳到对应div的位置</span></span><br><span class="line">    e.preventDefault(); <span class="comment">//防止链接打开 URL：</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span </summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>【转载】JavaScript--localStorage</title>
