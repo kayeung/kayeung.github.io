@@ -1,0 +1,233 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>JS瀑布流插件——salvattore | Kayeung 小作坊</title><meta name="keywords" content="Programer"><meta name="author" content="Kayeung Au"><meta name="copyright" content="Kayeung Au"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="瀑布流插件 – salvattore [音标：赛欧维特] ，这里给大家简单解释一下用法。   设计思想 在H5的布局中，只有流式布局，要么是块元素的独占一行，如下图： 或者是浮动的，向右排列：  而 savlattore实现的瀑布流是下面的样子。  看出区别没？容器1和容器4之间是直接排列下去的，而不因为容器3的高度，中间就会有很大的缝隙。 如果没理解，请认真看看上面三个图的区别。 那么salv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS瀑布流插件——salvattore">
+<meta property="og:url" content="https://kayeung.github.io/2022/02/23/JS%E7%80%91%E5%B8%83%E6%B5%81%E6%8F%92%E4%BB%B6--salvattore/index.html">
+<meta property="og:site_name" content="Kayeung 小作坊">
+<meta property="og:description" content="瀑布流插件 – salvattore [音标：赛欧维特] ，这里给大家简单解释一下用法。   设计思想 在H5的布局中，只有流式布局，要么是块元素的独占一行，如下图： 或者是浮动的，向右排列：  而 savlattore实现的瀑布流是下面的样子。  看出区别没？容器1和容器4之间是直接排列下去的，而不因为容器3的高度，中间就会有很大的缝隙。 如果没理解，请认真看看上面三个图的区别。 那么salv">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kayeung.github.io/img/top-img.jpg">
+<meta property="article:published_time" content="2022-02-23T06:18:40.922Z">
+<meta property="article:modified_time" content="2022-02-23T06:36:00.137Z">
+<meta property="article:author" content="Kayeung Au">
+<meta property="article:tag" content="Programer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kayeung.github.io/img/top-img.jpg"><link rel="shortcut icon" href="/img/ico.png"><link rel="canonical" href="https://kayeung.github.io/2022/02/23/JS%E7%80%91%E5%B8%83%E6%B5%81%E6%8F%92%E4%BB%B6--salvattore/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'JS瀑布流插件——salvattore',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-02-23 14:36:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="Kayeung 小作坊" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://kayeung.github.io/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://kayeung.github.io/img/top-img.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Kayeung 小作坊</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JS瀑布流插件——salvattore</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-02-23T06:18:40.922Z" title="发表于 2022-02-23 14:18:40">2022-02-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-02-23T06:36:00.137Z" title="更新于 2022-02-23 14:36:00">2022-02-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JS瀑布流插件——salvattore"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><img src="../../../../img/640.webp" alt="img"></p>
+<p>瀑布流插件 – salvattore [音标：赛欧维特] ，这里给大家简单解释一下用法。 </p>
+<p> 设计思想</p>
+<p>在H5的布局中，只有流式布局，要么是块元素的独占一行，如下图：<img src="../../../../img/640-16455977816672.webp" alt="1516763230244010654.png"></p>
+<p>或者是浮动的，向右排列：</p>
+<p><img src="../../../../img/640-16455977929904.webp" alt="1516763203589009739.png"></p>
+<p>而 savlattore实现的瀑布流是下面的样子。</p>
+<p><img src="../../../../img/640-16455978029496.webp" alt="1516763402060076542.png"></p>
+<p>看出区别没？容器1和容器4之间是直接排列下去的，而不因为容器3的高度，中间就会有很大的缝隙。</p>
+<p>如果没理解，请认真看看上面三个图的区别。</p>
+<p>那么salvattore是如何实现的呢？请看下图：</p>
+<p><img src="../../../../img/640-16455978109728.webp" alt="1516764462396083093.png"></p>
+<p>发现奥秘没？salvattore其实是动态生成了若干个div，然后将页面元素塞入其中，就实现了瀑布流了。</p>
+<p>用法</p>
+<p>现在介绍一下怎么使用。</p>
+<p>1 页面引入salvattore.js</p>
+<p>推荐采用bootcdn作为源。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&lt; script  src = &quot;https://cdn.bootcss.com/salvattore/1.0.9/salvattore.min.js&quot; &gt;&lt;/ script &gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2 将你的所有的容器都放入一个div中，这个div增加一个属性 data-columns<br>&lt; div  id = “fh5co-board”  data-columns&gt;</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&lt; div  class = &quot;item&quot; &gt;</span><br><span class="line">    &lt; div  class = &quot;animate-box&quot; &gt;</span><br><span class="line">        &lt; a  href = &quot;#&quot;  class = &quot;image-popup fh5co-board-img&quot; &gt;</span><br><span class="line">        &lt; img  src = &quot;http://demo.cssmoban.com/cssthemes3/ft5_11_hydrogen/images/img_1.jpg&quot;  alt = &quot;Free HTML5 Bootstrap template&quot; &gt;&lt;/ a &gt;</span><br><span class="line">    &lt;/ div &gt;</span><br><span class="line">    &lt; div  class = &quot;fh5co-desc&quot; &gt;一个魔幻效果的摄影网站模板&lt; br &gt;凡科建站 [科技]&lt;/ div &gt;</span><br><span class="line">&lt;/ div &gt;</span><br><span class="line">&lt; div  class = &quot;item&quot; &gt;</span><br><span class="line">    &lt; div  class = &quot;animate-box&quot; &gt;</span><br><span class="line">        &lt; a  href = &quot;#&quot;  class = &quot;image-popup fh5co-board-img&quot; &gt;</span><br><span class="line">        &lt; img  src = &quot;http://demo.cssmoban.com/cssthemes3/ft5_11_hydrogen/images/img_2.jpg&quot;  alt = &quot;Free HTML5 Bootstrap template&quot; &gt;&lt;/ a &gt;</span><br><span class="line">    &lt;/ div &gt;</span><br><span class="line">    &lt; div  class = &quot;fh5co-desc&quot; &gt;一个魔幻效果的摄影网站模板&lt; br &gt;凡科建站 [科技]&lt;/ div &gt;</span><br><span class="line">&lt;/ div &gt;</span><br><span class="line">&lt; div  class = &quot;item&quot; &gt;</span><br><span class="line">    &lt; div  class = &quot;animate-box&quot; &gt;</span><br><span class="line">        &lt; a  href = &quot;#&quot;  class = &quot;image-popup fh5co-board-img&quot; &gt;</span><br><span class="line">        &lt; img  src = &quot;http://demo.cssmoban.com/cssthemes3/ft5_11_hydrogen/images/img_6.jpg&quot;  alt = &quot;Free HTML5 Bootstrap template&quot; &gt;&lt;/ a &gt;</span><br><span class="line">    &lt;/ div &gt;</span><br><span class="line">    &lt; div  class = &quot;fh5co-desc&quot; &gt;一个魔幻效果的摄影网站模板&lt; br &gt;凡科建站 [科技]&lt;/ div &gt;</span><br><span class="line">&lt;/ div &gt;</span><br><span class="line">&lt; div  class = &quot;item&quot; &gt;</span><br><span class="line">    &lt; div  class = &quot;animate-box&quot; &gt;</span><br><span class="line">        &lt; a  href = &quot;#&quot;  class = &quot;image-popup fh5co-board-img&quot; &gt;</span><br><span class="line">        &lt; img  src = &quot;http://demo.cssmoban.com/cssthemes3/ft5_11_hydrogen/images/img_3.jpg&quot;  alt = &quot;Free HTML5 Bootstrap template&quot; &gt;&lt;/ a &gt;</span><br><span class="line">    &lt;/ div &gt;</span><br><span class="line">    &lt; div  class = &quot;fh5co-desc&quot; &gt;一个魔幻效果的摄影网站模板&lt; br &gt;凡科建站 [科技]&lt;/ div &gt;</span><br><span class="line">&lt;/ div &gt;</span><br><span class="line">&lt; div  class = &quot;item&quot; &gt;</span><br><span class="line">    &lt; div  class = &quot;animate-box&quot; &gt;</span><br><span class="line">        &lt; a  href = &quot;#&quot;  class = &quot;image-popup fh5co-board-img&quot; &gt;</span><br><span class="line">        &lt; img  src = &quot;http://demo.cssmoban.com/cssthemes3/ft5_11_hydrogen/images/img_4.jpg&quot;  alt = &quot;Free HTML5 Bootstrap template&quot; &gt;&lt;/ a &gt;</span><br><span class="line">    &lt;/ div &gt;</span><br><span class="line">    &lt; div  class = &quot;fh5co-desc&quot; &gt;一个魔幻效果的摄影网站模板&lt; br &gt;凡科建站 [科技]&lt;/ div &gt;</span><br><span class="line">&lt;/ div &gt;</span><br><span class="line">&lt; div  class = &quot;item&quot; &gt;</span><br><span class="line">    &lt; div  class = &quot;animate-box&quot; &gt;</span><br><span class="line">        &lt; a  href = &quot;#&quot;  class = &quot;image-popup fh5co-board-img&quot; &gt;</span><br><span class="line">        &lt; img  src = &quot;http://demo.cssmoban.com/cssthemes3/ft5_11_hydrogen/images/img_5.jpg&quot;  alt = &quot;Free HTML5 Bootstrap template&quot; &gt;&lt;/ a &gt;</span><br><span class="line">    &lt;/ div &gt;</span><br><span class="line">    &lt; div  class = &quot;fh5co-desc&quot; &gt;一个魔幻效果的摄影网站模板&lt; br &gt;凡科建站 [科技]&lt;/ div &gt;</span><br><span class="line">&lt;/ div &gt;</span><br><span class="line">&lt; div  class = &quot;item&quot; &gt;</span><br><span class="line">    &lt; div  class = &quot;animate-box&quot; &gt;</span><br><span class="line">        &lt; a  href = &quot;#&quot;  class = &quot;image-popup fh5co-board-img&quot; &gt;</span><br><span class="line">        &lt; img  src = &quot;http://demo.cssmoban.com/cssthemes3/ft5_11_hydrogen/images/img_7.jpg&quot;  alt = &quot;Free HTML5 Bootstrap template&quot; &gt;&lt;/ a &gt;</span><br><span class="line">    &lt;/ div &gt;</span><br><span class="line">    &lt; div  class = &quot;fh5co-desc&quot; &gt;一个魔幻效果的摄影网站模板&lt; br &gt;凡科建站 [科技]&lt;/ div &gt;</span><br><span class="line">&lt;/ div &gt;</span><br><span class="line">&lt; div  class = &quot;item&quot; &gt;</span><br><span class="line">    &lt; div  class = &quot;animate-box&quot; &gt;</span><br><span class="line">        &lt; a  href = &quot;#&quot;  class = &quot;image-popup fh5co-board-img&quot; &gt;</span><br><span class="line">        &lt; img  src = &quot;http://demo.cssmoban.com/cssthemes3/ft5_11_hydrogen/images/img_8.jpg&quot;  alt = &quot;Free HTML5 Bootstrap template&quot; &gt;&lt;/ a &gt;</span><br><span class="line">    &lt;/ div &gt;</span><br><span class="line">    &lt; div  class = &quot;fh5co-desc&quot; &gt;一个魔幻效果的摄影网站模板&lt; br &gt;凡科建站 [科技]&lt;/ div &gt;</span><br><span class="line">&lt;/ div &gt;</span><br><span class="line">&lt;/ div &gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>这样就可以用了，salvattore的引入和初始化非常简单。</p>
+<p>3 自定义一个salvattore的css样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Base styles */</span></span><br><span class="line"><span class="selector-class">.column</span> &#123;</span><br><span class="line">     <span class="attribute">float</span> :  left ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span>  screen  <span class="keyword">and</span> ( <span class="attribute">max-width</span> :  <span class="number">300px</span> ) &#123;</span><br><span class="line">     <span class="selector-class">.column</span> &#123;</span><br><span class="line">         <span class="attribute">float</span> :  none ;</span><br><span class="line">         <span class="attribute">position</span> :  relative ;</span><br><span class="line">         <span class="attribute">clear</span> :  both ;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.size</span> -<span class="number">1</span> of <span class="number">4</span>  &#123;</span><br><span class="line">     <span class="attribute">width</span> :  <span class="number">25%</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.size</span> -<span class="number">1</span> of <span class="number">3</span>  &#123;</span><br><span class="line">     <span class="attribute">width</span> :  <span class="number">33.333%</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.size</span> -<span class="number">1</span> of <span class="number">2</span>  &#123;</span><br><span class="line">     <span class="attribute">width</span> :  <span class="number">50%</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-id">#fh</span> <span class="number">5</span> co-board<span class="selector-attr">[data-columns]</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">     <span class="attribute">content</span> :  <span class="string">&#x27;4 .column.size-1of4&#x27;</span> ;</span><br><span class="line">     <span class="attribute">display</span> :  none ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Configurate salvattore with media queries */</span></span><br><span class="line"><span class="keyword">@media</span>  screen  <span class="keyword">and</span> ( <span class="attribute">max-width</span> :  <span class="number">300px</span> ) &#123;</span><br><span class="line">     <span class="selector-id">#fh</span> <span class="number">5</span> co-board<span class="selector-attr">[data-columns]</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">         <span class="attribute">content</span> :  <span class="string">&#x27;1 .column&#x27;</span> ; </span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span>  screen  <span class="keyword">and</span> ( <span class="attribute">min-width</span> :  <span class="number">301px</span> ) <span class="keyword">and</span> ( <span class="attribute">max-width</span> :  <span class="number">700px</span> ) &#123;</span><br><span class="line">     <span class="selector-id">#fh</span> <span class="number">5</span> co-board<span class="selector-attr">[data-columns]</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">         <span class="attribute">content</span> :  <span class="string">&#x27;2 .column.size-1of2&#x27;</span> ;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span>  screen  <span class="keyword">and</span> ( <span class="attribute">min-width</span> :  <span class="number">701px</span> ) <span class="keyword">and</span> ( <span class="attribute">max-width</span> :  <span class="number">850px</span> ) &#123;</span><br><span class="line">     <span class="selector-id">#fh</span> <span class="number">5</span> co-board<span class="selector-attr">[data-columns]</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">         <span class="attribute">content</span> :  <span class="string">&#x27;3 .column.size-1of3&#x27;</span> ;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span>  screen  <span class="keyword">and</span> ( <span class="attribute">min-width</span> :  <span class="number">851px</span> ) &#123;</span><br><span class="line">     <span class="selector-id">#fh</span> <span class="number">5</span> co-board<span class="selector-attr">[data-columns]</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">         <span class="attribute">content</span> :  <span class="string">&#x27;4 .column.size-1of4&#x27;</span> ;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>上面的css解释一下：</p>
+<p>1 目的是在不同大小的浏览器上展示不同列数的瀑布流</p>
+<p>PC机上，展示4列，平板上3列，一般手机上2列，如果你的手机太小了，就1列了。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span>  screen  <span class="keyword">and</span> ( <span class="attribute">max-width</span> :  <span class="number">300px</span> ) &#123;</span><br><span class="line">     <span class="selector-class">.column</span> &#123;</span><br><span class="line">         <span class="attribute">float</span> :  none ;</span><br><span class="line">         <span class="attribute">position</span> :  relative ;</span><br><span class="line">         <span class="attribute">clear</span> :  both ;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这一句是说，如果浏览器宽度小于300px的话，.column的样式就是这样的。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#fh</span> <span class="number">5</span> co-board<span class="selector-attr">[data-columns]</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">     <span class="attribute">content</span> :  <span class="string">&#x27;4 .column.size-1of4&#x27;</span> ;</span><br><span class="line">     <span class="attribute">display</span> :  none ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>这是干嘛呢？原来，salvattore在创建多个列的手法是这样的，它动态在要瀑布流显示的多个容器的前面增加一个文本元素，这个元素的内容会决定要创建几列瀑布流。这句话的意思是，id为fh5co-board(#fh5co-board)，且有属性名为 data-columns( [data-columns] )的标签将在其前面(::before)增加一个文本元素，元素的内容(content)是’4 .column.size-1of4’的文字，但这行文字是隐藏不可见(display:none)的。</p>
+<p>这里面写的 4 .column.size-1of4  的格式内容，是固定的，salvattore看到这样的文字就知道该处理成4列。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span>  screen  <span class="keyword">and</span> ( <span class="attribute">min-width</span> :  <span class="number">701px</span> ) <span class="keyword">and</span> ( <span class="attribute">max-width</span> :  <span class="number">850px</span> ) &#123;</span><br><span class="line">     <span class="selector-id">#fh</span> <span class="number">5</span> co-board<span class="selector-attr">[data-columns]</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">         <span class="attribute">content</span> :  <span class="string">&#x27;3 .column.size-1of3&#x27;</span> ;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>这句的 意思是在701px到850px宽度的浏览器上，瀑布流就处理成3列了。</p>
+<p> 动态添加容器</p>
+<p>另外，如何动态的添加容器呢？</p>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>  conter=<span class="built_in">document</span>.querySelector( <span class="string">&#x27;#fh5co-board&#x27;</span> );</span><br><span class="line">     <span class="keyword">var</span>  hts=[];</span><br><span class="line">     <span class="keyword">for</span> ( <span class="keyword">var</span>  i=<span class="number">1</span>;i&lt;=<span class="number">29</span>;i++)&#123;</span><br><span class="line">         hts[i-<span class="number">1</span>]=$(<span class="string">`&lt;div class= &quot;item bounceIn animated&quot; &gt; &lt;div class= &quot;animate-box&quot; &gt;&lt;a href= &quot;#&quot;  class= &quot;image-popup fh5co-board-img&quot;  title= &quot;Lorem&quot; &gt;</span></span><br><span class="line"><span class="string">             &lt;img src= &quot;http://demo.cssmoban.com/cssthemes3/ft5_11_hydrogen/images/img_`</span>+i+<span class="string">`.jpg&quot;  alt= &quot;Free HTML5 Bootstrap template&quot; &gt;&lt;/a&gt;</span></span><br><span class="line"><span class="string">         &lt;/div&gt;&lt;div class= &quot;fh5co-desc&quot; &gt;一个魔幻效果的摄影网站模板&lt;br&gt;凡科建站 [科技]&lt;/div&gt; &lt;/div&gt;`</span>)[<span class="number">0</span>];</span><br><span class="line">     &#125;</span><br><span class="line">salvattore[ <span class="string">&#x27;append_elements&#x27;</span> ](conter, hts);</span><br></pre></td></tr></table></figure>
+
+
+<p>1 采用原生js获得包含所有容器的div对象。上例：</p>
+<p><code>var conter=document.querySelector(&#39;#fh5co-board&#39;);</code></p>
+<p>这里一定要注意，是采用原生方式获取的，而不是jquery，如果采用jquery方式代码如下：</p>
+<p><code>var conter=$(&#39;#fh5co-board&#39;)[0];</code></p>
+<p>2 创建一个数组存放动态的容器</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>  hts=[];</span><br><span class="line"><span class="keyword">for</span> ( <span class="keyword">var</span>  i=<span class="number">1</span>;i&lt;=<span class="number">29</span>;i++)&#123;</span><br><span class="line">   hts[i-<span class="number">1</span>]=$(<span class="string">`&lt;div class= &quot;item bounceIn animated&quot; &gt; </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">   &lt;div class= &quot;animate-box&quot; &gt;</span></span><br><span class="line"><span class="string">   &lt;a href= &quot;#&quot;  class= &quot;image-popup fh5co-board-img&quot;  title= &quot;Lorem&quot; &gt;</span></span><br><span class="line"><span class="string">   &lt;img src= &quot;http://demo.cssmoban.com/cssthemes3/ft5_11_hydrogen/images/img_<span class="subst">$&#123;i&#125;</span>.jpg&quot;</span></span><br><span class="line"><span class="string">    alt= &quot;Free HTML5 Bootstrap template&quot; &gt;&lt;/a&gt;</span></span><br><span class="line"><span class="string">   &lt;/div&gt;&lt;div class= &quot;fh5co-desc&quot; &gt;一个魔幻效果的摄影网站模板&lt;br&gt;凡科建站 </span></span><br><span class="line"><span class="string">    [科技]&lt;/div&gt; &lt;/div&gt;`</span>)[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">salvattore.append_elements(conter, hts);</span><br></pre></td></tr></table></figure>
+
+<p>思路：</p>
+<ul>
+<li>首先获取容器外面的div的dom对象</li>
+<li>动态创建多个容器，并放到一个数组中</li>
+<li>salvattore方法的append_elements方法，将数组追加到div的最后面。</li>
+</ul>
+<p>这里留意一下几个问题：</p>
+<p>2.1 hts是一个数组</p>
+<p>2.2 hts[i-1] 直接向数组中第一个元素赋值。javascript真是方便，不需要分配数组空间，直接就往数组里面插入数据。爽得很。</p>
+<p>2.3 jquery方式创建dom对象</p>
+<p><code>$(html字符串)</code> ，jquery真是好用，如果用原生js创建dom对象就烦死了，但jquery直接写html代码就可以了。</p>
+<p>不过，这样得到的对象不是原生dom对象，而是原生dom对象被封装后的jquery对象。</p>
+<p>因此改写为：<code>$(html字符串)[0]</code>  以获得原生dom对象。</p>
+<p>2.4 ES6的模板字符串</p>
+<p>本例中的字符串很有意思，千万注意以下特点：</p>
+<ul>
+<li><p>很长的文字是可以换行的，</p>
+</li>
+<li><p>字符串的开头结尾不是用引号(‘ 或 “ )  而是 ` ，一个小撇，在键盘 1 左侧那个 ~ 按键</p>
+</li>
+<li><p>中间插入变量没用拼接，而是采用${i} </p>
+</li>
+</ul>
+<p>有兴趣的老友可以自己百度一下模板字符串，ES6的特性。</p>
+<p>总结</p>
+<p>基本，salvattore的用法就是这么简单。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Kayeung Au</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://kayeung.github.io/2022/02/23/JS%E7%80%91%E5%B8%83%E6%B5%81%E6%8F%92%E4%BB%B6--salvattore/">https://kayeung.github.io/2022/02/23/JS%E7%80%91%E5%B8%83%E6%B5%81%E6%8F%92%E4%BB%B6--salvattore/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://kayeung.github.io" target="_blank">Kayeung 小作坊</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/02/12/jQuery-%E8%B7%B3%E8%BD%AC%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE/"><img class="next-cover" src="https://kayeung.github.io/img/top-img.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">jQuery-跳转到页面指定位置</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://kayeung.github.io/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Kayeung Au</div><div class="author-info__description">双学位在读本科生，主修前端设计，正自学后端</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/kayeung"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:kayeung2020@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://www.facebook.com/kayeung.au" target="_blank" title="Facebook"><i class="fab fa-facebook-square"></i></a><a class="social-icon" href="https://www.instagram.com/kayeung_au/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a><a class="social-icon" href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter-square"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">小作坊新开张，欢迎光临~</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/23/JS%E7%80%91%E5%B8%83%E6%B5%81%E6%8F%92%E4%BB%B6--salvattore/" title="JS瀑布流插件——salvattore">JS瀑布流插件——salvattore</a><time datetime="2022-02-23T06:18:40.922Z" title="发表于 2022-02-23 14:18:40">2022-02-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/12/jQuery-%E8%B7%B3%E8%BD%AC%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE/" title="jQuery-跳转到页面指定位置">jQuery-跳转到页面指定位置</a><time datetime="2022-02-12T15:45:19.433Z" title="发表于 2022-02-12 23:45:19">2022-02-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/11/JavaScript--localStorage/" title="【转载】JavaScript--localStorage">【转载】JavaScript--localStorage</a><time datetime="2022-02-11T03:28:43.002Z" title="发表于 2022-02-11 11:28:43">2022-02-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/10/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81%E5%8F%8A%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0/" title="微信小程序之表单验证及前端实现笔记">微信小程序之表单验证及前端实现笔记</a><time datetime="2022-02-10T08:22:22.808Z" title="发表于 2022-02-10 16:22:22">2022-02-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/09/%E3%80%90%E5%A4%87%E5%BF%98%E3%80%91CSS%E6%96%87%E5%AD%97%E6%BA%A2%E5%87%BA%E7%9C%81%E7%95%A5%E5%8F%B7%E4%BB%A3%E6%9B%BF/" title="微信小程序开发备忘录">微信小程序开发备忘录</a><time datetime="2022-02-09T01:37:42.641Z" title="发表于 2022-02-09 09:37:42">2022-02-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By Kayeung Au</div><div class="footer_custom_text">All Rights Reserved.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
