@@ -1,0 +1,208 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>后台管理系统笔记 | Kayeung 小作坊</title><meta name="keywords" content="Programer"><meta name="author" content="Kayeung Au"><meta name="copyright" content="Kayeung Au"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="技术栈：Vue.js、elementUI、VueX、Axios 后台管理系统​    某个后台管理系统，包含商品管理、用户管理、订单等等信息。 技术点​    Vue + Vue-Router + VueX + ElementUI + Axios + 第三方库、 项目准备 1. mysql  2. iconfont  形目搭建 1. &#96;&#96;vue create vue-ego&#96;&#96;  2. &#96;&#96;vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后台管理系统笔记">
+<meta property="og:url" content="https://kayeung.github.io/2022/02/27/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Kayeung 小作坊">
+<meta property="og:description" content="技术栈：Vue.js、elementUI、VueX、Axios 后台管理系统​    某个后台管理系统，包含商品管理、用户管理、订单等等信息。 技术点​    Vue + Vue-Router + VueX + ElementUI + Axios + 第三方库、 项目准备 1. mysql  2. iconfont  形目搭建 1. &#96;&#96;vue create vue-ego&#96;&#96;  2. &#96;&#96;vue">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kayeung.github.io/img/top-img.jpg">
+<meta property="article:published_time" content="2022-02-27T12:42:19.442Z">
+<meta property="article:modified_time" content="2022-03-01T09:31:13.559Z">
+<meta property="article:author" content="Kayeung Au">
+<meta property="article:tag" content="Programer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kayeung.github.io/img/top-img.jpg"><link rel="shortcut icon" href="/img/ico.png"><link rel="canonical" href="https://kayeung.github.io/2022/02/27/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '后台管理系统笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-01 17:31:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="Kayeung 小作坊" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://kayeung.github.io/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://kayeung.github.io/img/top-img.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Kayeung 小作坊</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">后台管理系统笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-02-27T12:42:19.442Z" title="发表于 2022-02-27 20:42:19">2022-02-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-01T09:31:13.559Z" title="更新于 2022-03-01 17:31:13">2022-03-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="后台管理系统笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>技术栈：Vue.js、elementUI、VueX、Axios</p>
+<h2 id="后台管理系统"><a href="#后台管理系统" class="headerlink" title="后台管理系统"></a>后台管理系统</h2><p>​    某个后台管理系统，包含商品管理、用户管理、订单等等信息。</p>
+<h2 id="技术点"><a href="#技术点" class="headerlink" title="技术点"></a>技术点</h2><p>​    Vue + Vue-Router + VueX + ElementUI + Axios + 第三方库、</p>
+<h2 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h2><pre><code> 1. mysql
+ 2. iconfont
+</code></pre>
+<h2 id="形目搭建"><a href="#形目搭建" class="headerlink" title="形目搭建"></a>形目搭建</h2><pre><code> 1. ``vue create vue-ego``
+ 2. ``vue-router vuex``
+ 3. ``axios``
+ 4. ``vue add Element`` --(按需)
+</code></pre>
+<h2 id="项目初始化"><a href="#项目初始化" class="headerlink" title="项目初始化"></a>项目初始化</h2><ol>
+<li>删除无用的组件 home.vue  about.vue hello…</li>
+<li>css初始化</li>
+<li>iconfont 图标导入</li>
+<li></li>
+</ol>
+<h2 id="后台服务"><a href="#后台服务" class="headerlink" title="后台服务"></a>后台服务</h2><pre><code>1. ``npm i express -S``
+</code></pre>
+<h2 id="路由搭建"><a href="#路由搭建" class="headerlink" title="路由搭建"></a>路由搭建</h2><pre><code> 1. 页面布局配置 同级登录界面
+ 2. 
+</code></pre>
+<p>​    </p>
+<h2 id="动态数据"><a href="#动态数据" class="headerlink" title="动态数据"></a>动态数据</h2><p>此部分在开发中应倒序进行，此顺序只是整理思路</p>
+<p>下面的所有操作默认已安装好所需要的插件（axios,nodemon,….. 等等）</p>
+<ol>
+<li><p>具体页面发起请求（Goods.vue）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      input: &quot;&quot;,</span><br><span class="line">      tableData: [],</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 编辑操作</span><br><span class="line">     */</span><br><span class="line">    handleEdit() &#123;&#125;,</span><br><span class="line">    /**</span><br><span class="line">     * 删除操作</span><br><span class="line">     */</span><br><span class="line">    handleDelete() &#123;&#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  //生命周期函数</span><br><span class="line">  created() &#123;</span><br><span class="line">    this.$api</span><br><span class="line">      .getGoodsList(&#123;</span><br><span class="line">        page: 1,</span><br><span class="line">      &#125;)</span><br><span class="line">      .then((res) =&gt; &#123;</span><br><span class="line">        console.log(res.data);</span><br><span class="line">        if (res.data.status === 200) &#123;</span><br><span class="line">          this.tableData = res.data.data; //数据列表</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意<code>created()</code> 里的<code>.getGoodsList</code></p>
+</li>
+<li><p>api请求方法   (/api/index.js)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 请求方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&quot;axios&quot;</span></span><br><span class="line"><span class="keyword">import</span> base <span class="keyword">from</span> <span class="string">&quot;./base&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> api = &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 商品列表</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="title">getGoodsList</span>(<span class="params">params</span>)</span> &#123; <span class="comment">//&#123;page:xx&#125;</span></span><br><span class="line">        <span class="keyword">return</span> axios.get(base.goodsList, &#123;</span><br><span class="line">            params</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="title">getTest</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> axios.get(base.test)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> api</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>getGoodList()</code>是具体的请求方法，传值到对应的接口（page：1，第一页）</p>
+<p>注意这里的<code>base</code></p>
+<p>记得在<code>main.js</code>导入api的包</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> api <span class="keyword">from</span> <span class="string">&quot;./api/index&quot;</span></span><br><span class="line"></span><br><span class="line">Vue.prototype.$api=api;</span><br></pre></td></tr></table></figure></li>
+<li><p>接口路径 (/api/base.js)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 接口路径配置：</span></span><br><span class="line"><span class="comment"> * 一般文件目录：base.js index.js</span></span><br><span class="line"><span class="comment"> * 但是公司不一定</span></span><br><span class="line"><span class="comment"> *      config</span></span><br><span class="line"><span class="comment"> *          login index.js</span></span><br><span class="line"><span class="comment"> *      index.js</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> base = &#123;</span><br><span class="line">    <span class="attr">test</span>:<span class="string">&#x27;/api/api/test&#x27;</span>,<span class="comment">//测试</span></span><br><span class="line">    <span class="attr">goodsList</span>: <span class="string">&#x27;/api/api/goodsList&#x27;</span>,<span class="comment">//商品列表</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> base;</span><br></pre></td></tr></table></figure>
+
+<p>注意这里的<code>/api/api/goodsList</code> ，因为需要跨域请求，所以多了一个<code>/api</code></p>
+</li>
+<li><p>跨域请求 (vue.config.js)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">devServer</span>: &#123;</span><br><span class="line">    <span class="attr">proxy</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;api&#x27;</span>: &#123;     <span class="comment">//这里是公共部分，在调用接口时后面接不相同的部分，</span></span><br><span class="line">        <span class="attr">target</span>: <span class="string">&#x27;http://localhost:9090/&#x27;</span>, <span class="comment">//这里写的是访问接口的域名和端口号</span></span><br><span class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>, <span class="comment">// 必须加上这个才能跨域请求</span></span><br><span class="line">        <span class="attr">pathRewrite</span>: &#123;  <span class="comment">// 重命名</span></span><br><span class="line">          <span class="string">&#x27;^/api&#x27;</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    因为在开发过程中，一台电脑需要充当客户机和服务机，所以发送请求到端口需要跨域，例如客户机（<code>localhost:8080</code>）、服务机（<code>localhost:9090</code>），客户机请求服务机上的接口由于端口已变，相当于跨域，所以需要做代理，将所有由<code>8080</code>发出的请求代理成<code>9090</code>来接收。</p>
+<p>​    在浏览器通过开发者工具可以看到请求的URL为<code>http://localhost:8080/api/api/goodsList?page=1</code> ,因为做了代理才会有2个<code>/api</code>(2个/api 的问题可以自行解决)</p>
+</li>
+<li><p>路由接口  (/server/router.js)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入express框架</span></span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> router = express.Router()</span><br><span class="line"><span class="comment">// 导入数据库 sqlF n(&#x27;sql&#x27;,[],res=&gt;&#123;&#125;)</span></span><br><span class="line"><span class="keyword">const</span> sqlFn = <span class="built_in">require</span>(<span class="string">&#x27;./mysql&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试接口</span></span><br><span class="line">router.get(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.send(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 路由接口</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 商品列表：获取分页&#123;total:&#x27;&#x27;,arr:[&#123;&#125;,&#123;&#125;,&#123;&#125;],pagesize:8,&#125;</span></span><br><span class="line"><span class="comment"> * 参数:page 页码</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">router.get(<span class="string">&#x27;/goodsList&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> page = req.query.page || <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> sqlLen = <span class="string">&quot;select * from project where id&quot;</span>;</span><br><span class="line">    sqlFn(sqlLen, <span class="literal">null</span>, <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> len = data.length;</span><br><span class="line">        <span class="keyword">const</span> sql = <span class="string">&#x27;select * from project order by id desc limit 8 offset &#x27;</span> + (page - <span class="number">1</span>) * <span class="number">8</span>;</span><br><span class="line">        sqlFn(sql, <span class="literal">null</span>, <span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (result.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                res.send(&#123;</span><br><span class="line">                    <span class="attr">status</span>: <span class="number">200</span>,</span><br><span class="line">                    <span class="attr">data</span>: result,</span><br><span class="line">                    <span class="attr">pageSize</span>: <span class="number">8</span>,</span><br><span class="line">                    <span class="attr">total</span>: len</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                res.send(&#123;</span><br><span class="line">                    <span class="attr">status</span>: <span class="number">500</span>,</span><br><span class="line">                    <span class="attr">msg</span>: <span class="string">&#x27;暂无数据&#x27;</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = router</span><br></pre></td></tr></table></figure>
+
+<p>写服务端的接口业务，SQL语句查询数据库，再返回数据</p>
+</li>
+<li><p>连接数据库 （/server/mysql.js）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 连接数据库 1.安装mysql 2.创建连接</span></span><br><span class="line"><span class="keyword">const</span> mysql = <span class="built_in">require</span>(<span class="string">&quot;mysql&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建数据库连接</span></span><br><span class="line"><span class="keyword">const</span> client = mysql.createConnection(&#123;</span><br><span class="line">    <span class="attr">host</span>:<span class="string">&#x27;localhost&#x27;</span>,<span class="comment">//数据域名 地址</span></span><br><span class="line">    <span class="attr">user</span>:<span class="string">&#x27;root&#x27;</span>,<span class="comment">//数据库名称</span></span><br><span class="line">    <span class="attr">password</span>:<span class="string">&#x27;&#x27;</span>,<span class="comment">//数据库密码 xampp集成</span></span><br><span class="line">    <span class="attr">database</span>:<span class="string">&#x27;ego&#x27;</span>,</span><br><span class="line">    <span class="comment">// port:3306,</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 封装数据库操作语句 sql语句 参数数组arr callback成功函数结果</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sqlFun</span>(<span class="params">sql,arr,callback</span>)</span>&#123;</span><br><span class="line">    client.query(sql,arr,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(error)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;数据库语句错误&quot;</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(error.toString())</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        callback(result)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports=sqlFun</span><br></pre></td></tr></table></figure></li>
+<li><p>服务配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 搭建express服务</span></span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"><span class="comment">//路由</span></span><br><span class="line"><span class="keyword">const</span> router=<span class="built_in">require</span>(<span class="string">&#x27;../server/router&#x27;</span>)</span><br><span class="line"></span><br><span class="line">app.use(<span class="string">&#x27;/api&#x27;</span>,router)</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">9090</span>,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">9090</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>9090</code>就是服务机监听的端口号</p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Kayeung Au</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://kayeung.github.io/2022/02/27/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/">https://kayeung.github.io/2022/02/27/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://kayeung.github.io" target="_blank">Kayeung 小作坊</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/02/23/JS%E7%80%91%E5%B8%83%E6%B5%81%E6%8F%92%E4%BB%B6--salvattore/"><img class="next-cover" src="https://kayeung.github.io/img/top-img.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">JS瀑布流插件——salvattore</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://kayeung.github.io/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Kayeung Au</div><div class="author-info__description">双学位在读本科生，主修前端设计，正自学后端</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/kayeung"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:kayeung2020@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://www.facebook.com/kayeung.au" target="_blank" title="Facebook"><i class="fab fa-facebook-square"></i></a><a class="social-icon" href="https://www.instagram.com/kayeung_au/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a><a class="social-icon" href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter-square"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">小作坊新开张，欢迎光临~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.</span> <span class="toc-text">后台管理系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">技术点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%87%86%E5%A4%87"><span class="toc-number">3.</span> <span class="toc-text">项目准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A2%E7%9B%AE%E6%90%AD%E5%BB%BA"><span class="toc-number">4.</span> <span class="toc-text">形目搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">5.</span> <span class="toc-text">项目初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1"><span class="toc-number">6.</span> <span class="toc-text">后台服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E6%90%AD%E5%BB%BA"><span class="toc-number">7.</span> <span class="toc-text">路由搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE"><span class="toc-number">8.</span> <span class="toc-text">动态数据</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/27/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/" title="后台管理系统笔记">后台管理系统笔记</a><time datetime="2022-02-27T12:42:19.442Z" title="发表于 2022-02-27 20:42:19">2022-02-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/23/JS%E7%80%91%E5%B8%83%E6%B5%81%E6%8F%92%E4%BB%B6--salvattore/" title="JS瀑布流插件——salvattore">JS瀑布流插件——salvattore</a><time datetime="2022-02-23T06:18:40.922Z" title="发表于 2022-02-23 14:18:40">2022-02-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/12/jQuery-%E8%B7%B3%E8%BD%AC%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE/" title="jQuery-跳转到页面指定位置">jQuery-跳转到页面指定位置</a><time datetime="2022-02-12T15:45:19.433Z" title="发表于 2022-02-12 23:45:19">2022-02-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/11/JavaScript--localStorage/" title="【转载】JavaScript--localStorage">【转载】JavaScript--localStorage</a><time datetime="2022-02-11T03:28:43.002Z" title="发表于 2022-02-11 11:28:43">2022-02-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/10/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81%E5%8F%8A%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0/" title="微信小程序之表单验证及前端实现笔记">微信小程序之表单验证及前端实现笔记</a><time datetime="2022-02-10T08:22:22.808Z" title="发表于 2022-02-10 16:22:22">2022-02-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By Kayeung Au</div><div class="footer_custom_text">All Rights Reserved.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
