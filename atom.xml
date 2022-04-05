@@ -6,7 +6,7 @@
   <link href="https://kayeung.github.io/atom.xml" rel="self"/>
   
   <link href="https://kayeung.github.io/"/>
-  <updated>2022-03-30T04:00:26.025Z</updated>
+  <updated>2022-04-05T15:42:49.267Z</updated>
   <id>https://kayeung.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue框架引入JQuery与Bootstrap</title>
+    <link href="https://kayeung.github.io/2022/04/05/Vue%E5%BC%95%E5%85%A5JQuery/"/>
+    <id>https://kayeung.github.io/2022/04/05/Vue%E5%BC%95%E5%85%A5JQuery/</id>
+    <published>2022-04-05T15:07:22.213Z</published>
+    <updated>2022-04-05T15:42:49.267Z</updated>
+    
+    <content type="html"><![CDATA[<p>前言：总所周知，Bootstrap框架是依赖JQuery，但是Vue中又不内置JQuery，由此诞生出这篇笔记</p><h2 id="引入JQuery"><a href="#引入JQuery" class="headerlink" title="引入JQuery"></a>引入JQuery</h2><h3 id="npm安装JQuery"><a href="#npm安装JQuery" class="headerlink" title="npm安装JQuery"></a>npm安装JQuery</h3><p><code>npm i jquery -S</code></p><h3 id="配置vue-config-js"><a href="#配置vue-config-js" class="headerlink" title="配置vue.config.js"></a>配置vue.config.js</h3><p>在vue.config.js文件中（在vue 中没有这个文件需要手动创建在项目主目录下）写入以下代码进行配置：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="attr">chainWebpack</span>: <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">        config.plugin(<span class="string">&#x27;provide&#x27;</span>).use(webpack.ProvidePlugin, [&#123;</span><br><span class="line">            <span class="attr">$</span>: <span class="string">&#x27;jquery&#x27;</span>,</span><br><span class="line">            <span class="attr">jquery</span>: <span class="string">&#x27;jquery&#x27;</span>,</span><br><span class="line">            <span class="attr">jQuery</span>: <span class="string">&#x27;jquery&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;window.jQuery&#x27;</span>: <span class="string">&#x27;jquery&#x27;</span></span><br><span class="line">        &#125;])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="在main-js中引入jQuery"><a href="#在main-js中引入jQuery" class="headerlink" title="在main.js中引入jQuery"></a>在main.js中引入jQuery</h3><p><code>import $ from &#39;jquery&#39;;</code></p><h3 id="重启vue"><a href="#重启vue" class="headerlink" title="重启vue"></a>重启vue</h3><p><code>npm run serve</code></p><h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3><p>网上很多教程提及到<code>webpack.base.conf.js</code>这个文件，但是最新版的vue模仿react实现零配置，所以<code>build / webpack.base.conf.js</code> 整个build文件夹都被隐藏。</p><p>因此，现在<code>webpack.base.conf.js</code>的真实路径：<code>node_modules/@vue/cli-service/webpack.config.js</code></p><h2 id="引入Bootstrap"><a href="#引入Bootstrap" class="headerlink" title="引入Bootstrap"></a>引入Bootstrap</h2><h3 id="npm安装Bootstrap"><a href="#npm安装Bootstrap" class="headerlink" title="npm安装Bootstrap"></a>npm安装Bootstrap</h3><p><code>npm install bootstrap@3</code></p><h3 id="复制Bootstrap核心文件"><a href="#复制Bootstrap核心文件" class="headerlink" title="复制Bootstrap核心文件"></a>复制Bootstrap核心文件</h3><p>复制<code>node_modules\bootstrap\dist</code>内的3个文件（css,fonts,js）到 <code>src\assets</code></p><h3 id="引入核心文件"><a href="#引入核心文件" class="headerlink" title="引入核心文件"></a>引入核心文件</h3><p>在<code>main.js</code>里引入：<code>import &#39;./assets/css/bootstrap.min.css&#39;</code>和<code>import &#39;./assets/js/bootstrap.min&#39;</code></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;前言：总所周知，Bootstrap框架是依赖JQuery，但是Vue中又不内置JQuery，由此诞生出这篇笔记&lt;/p&gt;
+&lt;h2 id=&quot;引入JQuery&quot;&gt;&lt;a href=&quot;#引入JQuery&quot; class=&quot;headerlink&quot; title=&quot;引入JQuery&quot;&gt;&lt;/a</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>服务器管理笔记</title>
